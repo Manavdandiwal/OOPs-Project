@@ -40,7 +40,6 @@ bool Addition::problem(int sec)
 		time_exit(sec);
 		ANS.detach();
 		system("cls");
-		cout << "Time's UP!" << endl;
 	}
 
 	if (!sec)
@@ -53,17 +52,20 @@ bool Addition::problem(int sec)
 	{
 		cout << "Your answer is correct" << endl;
 		corr_comments();
-		this_thread::sleep_for(chrono::seconds(4));
+		this_thread::sleep_for(chrono::seconds(3));
 		return true;
 	}
 
 	if (user_value == INT_MIN)
+	{
+		cout << "Time's UP!" << endl;
 		cout << "You did not answered the question." << endl;
+	}
 
 	else
 		cout << "Your answer is Wrong." << endl;
 
 	wrong_comments();
-	this_thread::sleep_for(chrono::seconds(4));
+	this_thread::sleep_for(chrono::seconds(3));
 	return false;
 }

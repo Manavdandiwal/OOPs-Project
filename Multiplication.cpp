@@ -5,6 +5,7 @@ void Multiplication::initialize()
 	/// <summary>
 	/// initialize the variables
 	/// </summary>
+	correct_ans = 1;
 	for (int i = 0; i < N; i++)
 	{
 		nums[i] = random(min(level, 2) + rand() % 2);
@@ -34,10 +35,37 @@ bool Multiplication::problem(int sec)
 	int user_value = INT_MIN;
 	// creating a thread for input so that we can exit this function after some time if user does not answer the ques.
 	thread ANS(input, std::ref(user_value));
-	time_exit(sec);
-	ANS.detach();
-	if (user_value == correct_ans)
-		return true;
+	if (sec)
+	{
+		time_exit(sec);
+		ANS.detach();
+		system("cls");
+	}
 
+	if (!sec)
+	{
+		ANS.join();
+		system("cls");
+	}
+
+	if (user_value == correct_ans)
+	{
+		cout << "Your answer is correct" << endl;
+		corr_comments();
+		this_thread::sleep_for(chrono::seconds(3));
+		return true;
+	}
+
+	if (user_value == INT_MIN)
+	{
+		cout << "Time's UP!" << endl;
+		cout << "You did not answered the question." << endl;
+	}
+
+	else
+		cout << "Your answer is Wrong." << endl;
+
+	wrong_comments();
+	this_thread::sleep_for(chrono::seconds(3));
 	return false;
 }

@@ -1,12 +1,12 @@
 #pragma once
 #include "base_class.h"
+extern class base_class;
 class Division : protected base_class
 {
     int correct_quot, correct_remain, divisor, dividend;
 public:
-    Division()
+    Division(int level, int type, int operation) : base_class(level, type, op)
     {
-        level = 1;
         N = min(level, 2);
         this->initialize();
     }
@@ -19,5 +19,5 @@ public:
     }
 
     void initialize();
-    bool problem(int sec);
+    bool problem(int sec = 0);
 };

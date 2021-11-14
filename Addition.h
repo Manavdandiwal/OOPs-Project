@@ -12,9 +12,8 @@ class Addition : protected base_class
 	int correct_ans;
 
 public:
-	Addition()
+	Addition(int level, int type, int operation) : base_class(level, type, op)
 	{
-		level = 1;
 		srand(time(0));
 		N = level + 1 + rand() % (4 - level);
 		nums = new int[N];
