@@ -5,9 +5,8 @@ class Subtraction : protected base_class
 	int correct_ans;
 public:
 	void initialize();
-	Subtraction()
+	Subtraction(int level, int type, int operation) : base_class(level, type, op)
 	{
-		level = 1;
 		srand(time(0));
 		N = level + 1 + rand() % (4 - level);
 		nums = new int[N];
@@ -19,5 +18,5 @@ public:
 	{
 		free(nums);
 	}
-	bool problem(int);
+	bool problem(int sec = 0);
 };
