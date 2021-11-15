@@ -15,7 +15,7 @@ public:
 	Addition(int level, int type, int operation) : base_class(level, type, op)
 	{
 		srand(time(0));
-		N = level + 1 + rand() % (4 - level);
+		N = level + 1 + rand() % (5 - level);
 		nums = new int[N];
 		this->correct_ans = 0;
 		this->initialize();

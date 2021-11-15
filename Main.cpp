@@ -15,13 +15,9 @@ int level_select();
 void transition(int time, string str, char end = '\n');
 void transition(int time, vector<string> str);
 void print_top(int type, vector<pair<string, int>> top_performers);
-void transition2(int time, string str, int line);
 
 int main()
 {
-    string str = "Hello World!";
-    transition2(100, str, 1);
-    return 0;
     string start = "Heya there buddy! Welcome to MATHEZ. We will help make mathematics easy for you.";
     transition(35, start);
     this_thread::sleep_for(chrono::seconds(1));
@@ -252,25 +248,6 @@ void transition(int time, string str, char end)
         this_thread::sleep_for(chrono::milliseconds(time));
     }
     cout << end;
-}
-
-void transition2(int time, string str, int line)
-{
-    int i = 0, j = str.length();
-    while (i < j)
-    {
-        gotoxy(i, line);
-        cout << str[i];
-        i++;
-        j--;
-        if (i > j)
-            break;
-        //this_thread::sleep_for(chrono::milliseconds(time));
-        gotoxy(j, line);
-        cout << str[j];
-        //j--;
-        //this_thread::sleep_for(chrono::milliseconds(time));
-    }
 }
 
 void transition(int time, vector<string> str)

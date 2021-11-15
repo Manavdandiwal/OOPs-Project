@@ -106,7 +106,7 @@ void type_quiz<T>::contest()
 		cout << setfill(' ') << i + 1 << setw(7 + participants[i].first.length()) << participants[i].first << setw(8 + max_len - participants[i].first.length()) << participants[i].second << endl;
 	}
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < participants.size(); i++)
 	{
 		top_performers << participants[i].first << endl;
 		top_performers << participants[i].second << endl;
@@ -129,4 +129,6 @@ void type_quiz<T>::contest()
 		file << participant.second << endl;
 		file.close();
 	}
+	cout << "Press any key to continue...";
+	_getch();
 }

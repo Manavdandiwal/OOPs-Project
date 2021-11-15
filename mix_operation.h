@@ -15,7 +15,6 @@ public:
 		nums = new int[N];
 		this->correct_ans = 0;
 		this->initialize();
-		ques = "";
 	}
 	friend void input2(float& a);
 	void initialize();
