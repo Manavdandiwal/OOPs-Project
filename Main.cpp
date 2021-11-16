@@ -14,10 +14,12 @@ int Operation_select();
 int level_select();
 void transition(int time, string str, char end = '\n');
 void transition(int time, vector<string> str);
-void print_top(int type, vector<pair<string, int>> top_performers);
+void print_top(int type, vector<pair<string, int>> top_performers,int max_len);
+void transition2(int time, string str, int line);
 
 int main()
 {
+    
     string start = "Heya there buddy! Welcome to MATHEZ. We will help make mathematics easy for you.";
     transition(35, start);
     this_thread::sleep_for(chrono::seconds(1));
@@ -140,28 +142,38 @@ int main()
             fstream quiz("Quiz.txt");
             vector<pair<string, int>> top_quiz;
             string name;
-            int points;
+            int points, max_prac = 0, max_bound = 0, max_quiz = 0;
 
             while (getline(quiz, name) && quiz >> points)
+            {
+                if (name.length() > max_quiz) max_quiz = name.length();
                 top_quiz.push_back({ name, points });
+            }
+                
 
 
             fstream practice("Practice.txt");
             vector<pair<string, int>> top_prac;
             while (getline(practice, name) && practice >> points)
+            {
+                if (name.length() > max_prac) max_prac = name.length();
                 top_prac.push_back({ name, points });
+            }
 
 
             fstream time_bound("Time_bound.txt");
             vector<pair<string, int>> top_time;
 
             while (getline(time_bound, name) && time_bound >> points)
+            {
+                if (name.length() > max_bound) max_bound = name.length();
                 top_time.push_back({ name, points });
+            }
             //break;
 
-            print_top(1, top_quiz);
-            print_top(2, top_prac);
-            print_top(3, top_time);
+            print_top(1, top_quiz, max_quiz);
+            print_top(2, top_prac, max_prac);
+            print_top(3, top_time, max_bound);
             cout << "Press any key to go to main menu" << endl;
             _getch();
             break;
@@ -250,6 +262,25 @@ void transition(int time, string str, char end)
     cout << end;
 }
 
+void transition2(int time, string str, int line)
+{
+    int i = 0, j = str.length();
+    while (i < j)
+    {
+        gotoxy(i, line);
+        cout << str[i];
+        i++;
+        j--;
+        if (i > j)
+            break;
+        //this_thread::sleep_for(chrono::milliseconds(time));
+        gotoxy(j, line);
+        cout << str[j];
+        //j--;
+        //this_thread::sleep_for(chrono::milliseconds(time));
+    }
+}
+
 void transition(int time, vector<string> str)
 {
     for (int i = 0; i < str.size(); i++)
@@ -260,7 +291,7 @@ void transition(int time, vector<string> str)
 
 void input2(float& a)
 {
-	cin >> a;
+    cin >> a;
 }
 
 void gotoxy(int x, int y)
@@ -269,21 +300,35 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-void print_top(int type, vector<pair<string, int>> top_performers)
-{
-    vector<string> types = {"Quiz", "Practice", "Time Bound"};
+void print_top(int type, vector<pair<string, int>> top_performers,int max_len)
+{   
+    vector<string> types = { "Quiz", "Practice", "Time Bound" };
     gotoxy(23, 9 * (type - 1) + 1);
     cout << types[type - 1] << endl;
     gotoxy(1, 9 * (type - 1) + 3);
-    cout << "Rank" << setw(20) << "Name" << setw(20) << "Scores" << endl;
+    cout << "Rank" << setfill(' ')<<setw(10) << "Name" <<setfill(' ')<< setw(20 + max_len) << "Scores" << endl;
     for (int i = 0; i < 3; i++)
     {
         if (i >= top_performers.size())
         {
-            cout << i + 1 << "-" << "-" << endl;
-            continue;
+            cout << " " << i + 1 << setfill(' ') << setw(9);
+            cout << "" << setfill('-') << setw(4) << "" << setfill(' ') << setw(14 + max_len) << "";
+            cout << "" << setfill('-') << setw(5) << "";
+            cout << endl;
         }
         else
-            cout << i + 1 << top_performers[i].first << top_performers[i].second << endl;
+        {
+            int dig = 0, temp = top_performers[i].second;//for using manipulator
+            while (temp != 0) {
+                temp /= 10;
+                dig++;
+            }
+           
+            cout << " " << i + 1 << setfill(' ')
+                << setw(top_performers[i].first.length() + 9) << top_performers[i].first <<
+                setfill(' ') << setw(14 + max_len + 4 - top_performers[i].first.length()+dig) <<
+                top_performers[i].second << endl;
+        }
+           
     }
 }
