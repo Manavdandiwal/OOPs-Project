@@ -17,7 +17,6 @@ void mix_operation::initialize()
             ques += arr[rand() % 4];
         ques += ' ';
     }
-    //cout << ques << endl;
     correct_ans = evaluate(ques);
 }
 

@@ -29,7 +29,7 @@ Practice_mode<T>::Practice_mode(int level, int type, int operation) : base_class
 	file.close();
 	cout << "Enter Your Name : ";
 	cin.ignore();
-	getline(cin, name);
+	getline(cin, this->name);
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "Each correct answer will be awarded 5 marks minus the number of wrong attempts. There will be no negative marking. So, after 5 wrong attempts for a given question, the question will be changed." << endl;
 	this_thread::sleep_for(chrono::seconds(5));

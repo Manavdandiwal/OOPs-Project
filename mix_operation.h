@@ -19,7 +19,7 @@ public:
 	friend void input2(float& a);
 	void initialize();
 	bool problem(int a = 0);
-    int precedence(char op);    
+	int precedence(char op);
     float applyOp(int a, int b, char op);
 	float evaluate(string tokens);
 };

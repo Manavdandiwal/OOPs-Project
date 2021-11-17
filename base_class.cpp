@@ -1,11 +1,4 @@
-#include "Addition.h"
-#include "type_quiz.h"
 #include "base_class.h"
-#include "Multiplication.h"
-#include "Subtraction.h"
-#include "Division.h"
-#include "Practice_mode.h"
-#include "time_bound.h"
 
 base_class::base_class(int level, int type, int operation)
 {
@@ -72,9 +65,6 @@ void base_class::print_scores()
     gotoxy(0, 0);
 }
 
-/// <summary>
-/// formatting to be done here by @JASKEERAT
-/// </summary>
 void base_class::show_report()
 {
     cin.ignore();
@@ -99,7 +89,7 @@ void base_class::show_report()
     cout << "Quiz Report" << endl;
     gotoxy(0, 3);
 
-    cout << "Quiz number" <<setfill(' ')<< setw(15) << "Marks" << setfill(' ')<<setw(18) << "Progress" << endl;
+    cout << "Quiz number" << setfill(' ') << setw(15) << "Marks" << setfill(' ') << setw(18) << "Progress" << endl;
     for (int i = 0; i < points.size(); i++)
     {
         int dig = 0, temp = points[i];
@@ -109,23 +99,23 @@ void base_class::show_report()
             temp /= 10;
             dig++;
         }
-        cout << i + 1 <<setfill(' ')<<setw(20 + dig) << points[i] <<setfill(' ')<< setw(15 - dig) << "";
+        cout << i + 1 << setfill(' ') << setw(20 + dig) << points[i] << setfill(' ') << setw(15 - dig) << "";
 
         if (!i)
-            cout << setfill(' ')<<setw(dig) << points[i] << endl;
+            cout << setfill(' ') << setw(dig) << points[i] << endl;
 
-        else 
+        else
         {
-            int dig = 0, temp = points[i]-points[i-1];
+            int dig = 0, temp = points[i] - points[i - 1];
             if (temp < 0) dig = 1;
             while (temp--)
             {
                 temp /= 10;
                 dig++;
             }
-            cout << setfill(' ')<<setw(dig) << points[i] - points[i - 1] << endl;
+            cout << setfill(' ') << setw(dig) << points[i] - points[i - 1] << endl;
         }
-            
+
     }
 
     cout << "Press any key to view Practice Report...";
@@ -142,34 +132,34 @@ void base_class::show_report()
     cout << "Practice Report" << endl;
     gotoxy(0, 3);
 
-  cout << "Practice number" << setfill(' ')<<setw(15) << "Marks" << setfill(' ')<<setw(18) << "Progress" << endl;
-  for (int i = 0; i < points.size(); i++)
-  {
-      int dig = 0, temp = points[i];
-      if (temp < 0) dig = 1;
-      while (temp--)
-      {
-          temp /= 10;
-          dig++;
-      }
-      cout << i + 1 << setfill(' ') << setw(24 + dig) << points[i] << setfill(' ') << setw(15 - dig) << "";
+    cout << "Practice number" << setfill(' ') << setw(15) << "Marks" << setfill(' ') << setw(18) << "Progress" << endl;
+    for (int i = 0; i < points.size(); i++)
+    {
+        int dig = 0, temp = points[i];
+        if (temp < 0) dig = 1;
+        while (temp--)
+        {
+            temp /= 10;
+            dig++;
+        }
+        cout << i + 1 << setfill(' ') << setw(24 + dig) << points[i] << setfill(' ') << setw(15 - dig) << "";
 
-      if (!i)
-          cout << setfill(' ') << setw(dig) << points[i] << endl;
+        if (!i)
+            cout << setfill(' ') << setw(dig) << points[i] << endl;
 
-      else
-      {
-          int dig = 0, temp = points[i] - points[i - 1];
-          if (temp < 0) dig = 1;
-          while (temp--)
-          {
-              temp /= 10;
-              dig++;
-          }
-          cout << setfill(' ') << setw(dig) << points[i] - points[i - 1] << endl;
-      }
+        else
+        {
+            int dig = 0, temp = points[i] - points[i - 1];
+            if (temp < 0) dig = 1;
+            while (temp--)
+            {
+                temp /= 10;
+                dig++;
+            }
+            cout << setfill(' ') << setw(dig) << points[i] - points[i - 1] << endl;
+        }
 
-  }
+    }
     cout << "Press any key to view Time bound Report...";
     _getch();
 
@@ -184,7 +174,7 @@ void base_class::show_report()
     cout << "Time bound practice Report" << endl;
     gotoxy(0, 3);
 
-    cout << "Time Bound number" << setfill(' ')<<setw(15) << "Marks" <<setfill(' ')<< setw(18) << "Progress" << endl;
+    cout << "Time Bound number" << setfill(' ') << setw(15) << "Marks" << setfill(' ') << setw(18) << "Progress" << endl;
     for (int i = 0; i < points.size(); i++)
     {
         int dig = 0, temp = points[i];
@@ -194,7 +184,7 @@ void base_class::show_report()
             temp /= 10;
             dig++;
         }
-        cout << i + 1 << setfill(' ') << setw(26+ dig) << points[i] << setfill(' ') << setw(15 - dig) << "";
+        cout << i + 1 << setfill(' ') << setw(26 + dig) << points[i] << setfill(' ') << setw(15 - dig) << "";
 
         if (!i)
             cout << setfill(' ') << setw(dig) << points[i] << endl;

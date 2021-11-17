@@ -44,7 +44,6 @@ template<class T>
 void type_quiz<T>::contest()
 {
 	ofstream top_performers("Quiz.txt");
-	// top_performers;
 	int start = 0;
 	int curr = 0;
 	int marks;
